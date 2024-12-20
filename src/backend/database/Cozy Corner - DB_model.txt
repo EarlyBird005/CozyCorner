@@ -1,0 +1,172 @@
+/*
+https://app.eraser.io/dashboard/all
+https://app.eraser.io/workspace/FF9dJvQuCZNSuUf5l39x?origin=share
+*/
+
+/*
+TODO:
+  review system (in all the foods & one for overall whole website)
+  
+  price number in FoodItems
+  quantity in FoodItems
+  foodImage string in FoodItems
+  quantity number in FooodItems
+  status enum "making the order", "Out for delivery", "cancelled", "delivered" in Orders
+  paymentDetail in Orders
+  refreshToken in Users
+
+  PaymentDetails module in DB
+*/
+
+// Revised DB
+/*
+title Cozy Corner DB_MODEL
+
+Users [icon: user, color: blue] {
+  id string pk
+  fullName string
+  email string 
+  mobileNumber string
+  password string
+  refreshToken string
+  createdAt timestamp
+  updatedAt timestamp
+}
+
+Addresses [icon: home, color: blue] {
+  id string pk
+  user objectId Users  
+  floorNumber string
+  address string
+  pinCode string
+  nearLandScape string
+  district string
+  createdAt timestamp
+  updatedAt timestamp
+}
+
+Menu [icon: menu] {
+  id string pk
+  categories objectId[] Category
+  createdAt timestamp
+  updatedAt timestamp
+}
+
+Category [icon: list] {
+  id string pk
+  foodItems objectId[] FoodItems
+  createdAt timestamp
+  updatedAt timestamp
+}
+
+FoodItems [icon: folder] {
+  id string pk
+  foodName string
+  price number
+  quantity number
+  description string
+  foodImage string
+  createdAt timestamp
+  updatedAt timestamp
+}
+
+Orders [icon: home] {
+  id string pk
+  orderBy objectId Users
+  foodItem objectId[] FoodItems
+  deliverTo objectId Addresses
+  status enum "making the order", "Out for delivery", "cancelled", "delivered"
+  paymentDetails string
+  orderedAt timestamp 
+}
+
+Users.id - Addresses.user
+Menu.categories < Category.id
+Category.foodItems < FoodItems.id
+Orders.orderBy - Users.id
+Orders.foodItem < FoodItems.id
+Orders.deliverTo - Addresses.id
+*/
+
+
+
+Users [icon: user, color: blue] {
+  id string pk
+  fullName string
+  email string 
+  mobileNumber string
+  password string
+  //address objectId[] Addresses
+  //orders objectId[] Orders
+//   paymentDetails string //   cardDetails string
+  createdAt timestamp
+  updatedAt timestamp
+}
+
+Addresses [icon: home, color: blue] {
+  id string pk
+  user objectId Users  
+  floorNumber string
+  address string
+  pinCode string
+  nearLandScape string
+  district string
+}
+
+Menu [icon: menu] {
+  id string pk
+  // cuisineName string
+  categories objectId[] Category
+  createdAt timestamp
+  updatedAt timestamp
+}
+
+Category [icon: list] {
+  id string pk
+  foodItems objectId[] FoodItems
+  createdAt timestamp
+  updatedAt timestamp
+}
+
+FoodItems [icon: folder] {
+  id string pk
+  name string
+  description string
+  createdAt timestamp
+  updatedAt timestamp
+}
+
+Orders [icon: home] {
+  id string pk
+  orderBy objectId Users
+  foodItem objectId[] FoodItems
+  deliverTo objectId Addresses
+  orderedAt timestamp 
+}
+
+// before
+Users.address < Addresses.id
+Users.orders < Orders.id
+Addresses.user - Users.id
+Menu.categories < Category.id
+Category.foodItems < FoodItems.id
+Orders.orderBy - Users.id // Orders.orderBy < Users.id. 
+Orders.foodItem < FoodItems.id
+Orders.deliverTo - Addresses.id
+
+
+// renewed
+Users.address < Addresses.id
+Users.orders < Orders.id
+Menu.categories < Category.id
+Category.foodItems < FoodItems.id
+Orders.foodItem <> FoodItems.id
+Orders.deliverTo - Addresses.id
+
+
+users.teams <> teams.id
+workspaces.folderId > folders.id
+workspaces.teamId > teams.id
+chat.workspaceId > workspaces.id
+invite.workspaceId > workspaces.id
+invite.inviterId > users.id

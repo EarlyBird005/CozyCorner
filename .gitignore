@@ -1,0 +1,5 @@
+src/backend/node_modules
+src/backend/.env
+src/backend/app.log
+src/backend/yarn.lock
+.env

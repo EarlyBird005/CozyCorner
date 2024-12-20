@@ -1,0 +1,68 @@
+.header-container {
+    padding: 20px 2.5vmax 20px 6.5vmax;
+    /* width: 85vmax; */ /* not needed anymore 'cause of the left & rght isde of padding */ 
+    margin: 10px auto;
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgb(120, 118, 118);
+}
+
+.logo-container img {
+    width: 4.5vmax;
+}
+
+.logo-container span {
+    display: block;
+    margin-left: -1.5vmax;
+    font-weight: 500;
+    /* color: black; */
+}
+
+.searchBar {
+    width: 50vmax;
+    display: flex;
+    margin-right: -10vmax;
+}
+
+.searchBar input {
+    color: bisque;
+    /* width: 85%; */
+    height: 3.2vmax;
+    margin-right: 2.5%;
+    padding: 10px;
+    border-radius: 10px;
+    outline: none;
+    background: transparent;
+    border: 2px solid black;
+    font-size: 1.05rem;
+}
+.searchBar button {
+    /* border-radius: 10px; */
+    /* width: 17.5%; */ /* might not need */ 
+    /* width: 1vmax; */
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    margin-left: -0.5vmax;
+}
+.searchBar button img {
+    height: 100%;
+    /* height: auto; */
+}
+
+
+.navBar {
+    margin-left: 20px;
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.navBar ul {
+    gap: 15px;
+}
+
+
+.navBar a:hover {
+    color: #9b9494;
+}
