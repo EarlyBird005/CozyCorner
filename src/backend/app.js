@@ -9,7 +9,7 @@ export const app = express();
 // middlewares
 app.use(cors());
 // app.use(cors({
-//     origin: process.env.CORS_ORIGIN, // to give limitate access
+//     origin: process.env.CORS_ORIGIN, // to give limitated access
 //     credentials: true
 // }));
 // app.use(express.json({ limit: "20kb"})); // give limitation 

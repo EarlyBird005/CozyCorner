@@ -1,4 +1,4 @@
-import { User } from "../modules/User.module.js";
+import { User } from "../models/User.module.js";
 
 export const userRegister = async (req, res) => {
     const { fullName, email, mobileNumber, password } = req.body;
@@ -13,7 +13,7 @@ export const userRegister = async (req, res) => {
         message: "Can't create new User"
     });
 
-    res.status(201).send(newUser);
+    res.status(201).send({newUser, cookie});
 };
 
 export const allUser = async (req, res) => {
@@ -25,5 +25,5 @@ export const userDelete = async (req, res) => {
     // console.log("", req.params.id);
     // await User.findByIdAndDelete("6749acbc6c9d659393e95f1d");
     
-    res.status(200).json({ "message": "success", "id": "6749acbc6c9d659393e95f1d" });
+    // res.status(200).json({ "message": "success", "id": "6749acbc6c9d659393e95f1d" });
 }

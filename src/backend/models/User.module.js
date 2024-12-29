@@ -46,7 +46,7 @@ const userSChema = new mongoose.Schema({
 
 userSChema.pre("save", async function (next) {
     if (!this.isModified("password")) return next(); // this pre hook get skipped if we aren't saving or updating the password
-    this.password = bcrypt.hash(this.password, 8);
+    this.password = await bcrypt.hash(this.password, 8);
     next();
 });
 
@@ -56,7 +56,7 @@ userSChema.methods.isPasswordCorrect = async function (password) {
 
 userSChema.methods.generateAccessToken = function () {
     // short lived access token
-    jwt.sign( // algorithm (default: HS256)
+    return jwt.sign( // algorithm (default: HS256)
     {
         _id: this._id,
         email: this.email
